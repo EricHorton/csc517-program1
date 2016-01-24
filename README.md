@@ -1,6 +1,6 @@
 # CSC 517 Program 1 - Class Portal
 
-This application is an example Ruby on Rails app deployed to [Heroku](https://docs.google.com/document/d/1xmeH4MAlUs6QfPoC4J4bsMKYWkawDZrsZDFM7S1G8ag/edit).
+This application is an example Ruby on Rails app deployed to [Heroku](https://ewhorton-portal.herokuapp.com).
 You can view the [requirements](https://docs.google.com/document/d/1xmeH4MAlUs6QfPoC4J4bsMKYWkawDZrsZDFM7S1G8ag/edit) in google docs.
 
 ## Recommended Build Environment
