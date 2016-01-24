@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="Rails portal: production" uuid="6e256e2e-4e0f-464f-9077-2b2d8a171c86">
-      <first-sync>true</first-sync>
-      <user-name>portal</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddffadfe5dff8dffedfebdfe6dff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
-    </data-source>
     <data-source name="Rails portal: development" uuid="a2dbda94-7b01-46b2-a033-dcf19c94a6ba">
       <first-sync>true</first-sync>
     </data-source>
