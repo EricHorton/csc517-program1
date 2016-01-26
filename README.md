@@ -24,3 +24,16 @@ Development through RubyMine is recommended. To start the Rails server use Run >
 
 ## User Authentication
 For more information on user authentication see the Code Academy [tutorial](https://www.codecademy.com/learn/rails-auth). Auth for this app was based on tutorial content.
+
+## Setup and Configuration
+Portal comes with a seed file for initial database values. Migrate and populate the database with
+```
+rake db:migrate
+rake db:seed
+```
+
+The default admin account cannot be deleted. Authentication information is
+```
+user: admin@portal.net
+pass: 3YP)g14*
+```

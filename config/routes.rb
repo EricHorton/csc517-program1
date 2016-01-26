@@ -59,7 +59,7 @@ Rails.application.routes.draw do
 
   # Users
   get 'create_student' => 'students#new'
-  resources :students, :students
+  resources :students
 
   # Authentication
   get 'login' => 'authentication#new'
