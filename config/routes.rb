@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   root 'index#index'
 
   # Users
-  get 'create-account' => 'students#new'
+  get 'create_student' => 'students#new'
   resources :students, :students
 
   # Authentication
