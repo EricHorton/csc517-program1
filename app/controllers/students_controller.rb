@@ -13,11 +13,16 @@ class StudentsController < ApplicationController
     student_attrs = params.require(:student).permit(:name, :email, :password)
     conf = params.require(:student).permit(:confirm_password)
 
-    if student_attrs[:password] === conf[:confirm_password] && @student = Student.create(student_attrs)
-      session[:user_id] = @student.id
-      redirect_to root_path
-    else
-      redirect_to create-account_path
+    begin
+      @student = Student.create(student_attrs) unless student_attrs[:password] != conf[:confirm_password]
+
+      if @student.id
+        session[:user_id] = @student.id
+        return redirect_to root_path
+      end
+
+    rescue
+      return redirect_to create_student_path
     end
   end
 end
