@@ -54,5 +54,15 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-    root 'index#index'
+  # Index Page
+  root 'index#index'
+
+  # Users
+  get 'create-account' => 'students#new'
+  resources :students, :students
+
+  # Authentication
+  get 'login' => 'authentication#new'
+  post 'login' => 'authentication#create'
+  delete 'logout' => 'authentication#destroy'
 end
