@@ -21,3 +21,6 @@ $ psql
 
 ## RubyMine
 Development through RubyMine is recommended. To start the Rails server use Run > Development: portal.
+
+## User Authentication
+For more information on user authentication see the Code Academy [tutorial](https://www.codecademy.com/learn/rails-auth). Auth for this app was based on tutorial content.
