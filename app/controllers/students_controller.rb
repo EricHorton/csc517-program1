@@ -22,7 +22,9 @@ class StudentsController < ApplicationController
       end
 
     rescue
-      return redirect_to create_student_path
+
     end
+
+    redirect_to create_student_path
   end
 end
