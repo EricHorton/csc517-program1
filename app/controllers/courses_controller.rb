@@ -10,11 +10,12 @@ class CoursesController < ApplicationController
       like = "%#{params[:like]}%"
 
       # Filter courses
-      @courses = Course.joins(:instructor).where('coursenumber LIKE :like ' +
+      @courses = Course.joins(:instructor).where('(coursenumber LIKE :like ' +
                                 ' OR title LIKE :like' +
                                 ' OR users.name LIKE :like' +
-                                ' OR description LIKE :like',
-                                :like => like)
+                                ' OR description LIKE :like)' +
+                                ' AND status = :status',
+                                :like => like, :status => params[:status])
     else
       @courses = Course.all
     end

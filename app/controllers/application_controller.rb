@@ -14,6 +14,16 @@ class ApplicationController < ActionController::Base
     auth_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
   end
 
+  # Convert a string parameter to boolean
+  helper_method :to_bool
+  def to_bool (string)
+    begin
+      Integer(string) == 1 ? true : false
+    rescue
+      false
+    end
+  end
+
   # Method for requiring authentication
   def require_auth
     redirect_to login_path unless authenticated?
