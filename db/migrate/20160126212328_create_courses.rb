@@ -8,9 +8,10 @@ class CreateCourses < ActiveRecord::Migration
       t.date :start_date, null:false
       t.date :end_date, null:false
       t.timestamps null: false
-      t.references :instructor, index: true
     end
 
-    add_foreign_key :courses, :users
+    add_reference :courses, :instructor, references: :users, index: true
+    add_foreign_key :courses, :users, column: :instructor_id
+
   end
 end
