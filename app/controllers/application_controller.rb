@@ -18,4 +18,9 @@ class ApplicationController < ActionController::Base
   def require_auth
     redirect_to login_path unless authenticated?
   end
+
+  # Require that a user is authenticated as a student
+  def require_student
+    redirect_to root_path unless (user = authenticated?) && user.type == 'Student'
+  end
 end

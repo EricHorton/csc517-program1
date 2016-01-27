@@ -1,3 +1,12 @@
+<div class="well">
+  <%= bootstrap_form_tag url: courses_path, method: 'get' do |f|%>
+    <% label = 'Filter'; label += " - #{params[:like]}" if params[:like] %>
+    <%= f.text_field 'like', label: label, placeholder: 'Filter by course number, title, instructor, description' %>
+    <%= f.submit 'Filter' %>
+    <%= link_to 'Clear Filter', courses_path, class: 'btn btn-default' %>
+  <% end %>
+</div>
+
 <% @courses.each do |c|  %>
   <div class="panel panel-default">
     <!-- Default panel heading -->
