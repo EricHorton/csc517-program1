@@ -59,10 +59,13 @@ Rails.application.routes.draw do
 
   # Users
   get 'create_student' => 'students#new'
-  resources :students
 
   # Authentication
   get 'login' => 'authentication#new'
   post 'login' => 'authentication#create'
   delete 'logout' => 'authentication#destroy'
+
+  # Courses
+  get '/courses' => 'courses#index'
+  get '/courses/:id' => 'courses#show', as: 'course'
 end

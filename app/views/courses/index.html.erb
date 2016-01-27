@@ -1,0 +1,28 @@
+<% @courses.each do |c|  %>
+  <div class="panel panel-default">
+    <!-- Default panel heading -->
+    <div class="panel-heading">
+      <%= link_to c.coursenumber + ' - ' + c.title, course_path(c) %>
+    </div>
+
+    <!-- Table -->
+    <table class="table">
+      <tr>
+        <td class="col-xs-1">Instructor</td><td class="col-xs-5"><%= Instructor.find(c.instructor_id).name %></td>
+      </tr>
+
+      <tr>
+        <td class="col-xs-1">Start Date</td><td class="col-xs-5"><%= c.start_date %></td>
+      </tr>
+
+      <tr>
+        <td class="col-xs-1">End Date</td><td class="col-xs-5"><%= c.end_date %></td>
+      </tr>
+
+      <tr>
+        <td class="col-xs-1">Description</td><td class="col-xs-5"><%= c.description %></td>
+      </tr>
+    </table>
+  </div>
+<% end %>
+
