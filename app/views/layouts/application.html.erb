@@ -23,19 +23,22 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <% if auth_user = authenticated? %>
+          <% if @auth_user %>
 
-            <!-- Render navigation links based on user type -->
-            <% if auth_user.type == 'Student' %>
+            <!-- Render navigation links based on users type -->
+            <% if @auth_user.type == 'Student' %>
               <%= render 'layouts/students_links' %>
             <% end %>
 
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <%= auth_user.name %><span class="caret"></span>
+                  <%= @auth_user.name %><span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
+                  <%if @auth_user.type != 'Instructor' %>
+                      <li><%= link_to "Edit Profile", edit_user_path(@auth_user) %></li>
+                  <% end %>
                   <li><%= link_to "Log out", logout_path, method: "delete" %></li>
                 </ul>
               </li>

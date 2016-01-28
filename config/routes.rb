@@ -58,6 +58,8 @@ Rails.application.routes.draw do
   root 'index#index'
 
   # Users
+  get '/users/:id/edit' => 'users#edit', as: 'edit_user'
+  put '/users/:id' => 'users#update', as: 'user'
   get 'create_student' => 'students#new', as: 'students'
   post 'create_student' => 'students#create', as: 'create_student'
 

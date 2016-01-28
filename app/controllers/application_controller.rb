@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   # Force login
   before_action :require_auth
 
-  # Helper method for returning the currently authenticated user
+  # Helper method for returning the currently authenticated users
   helper_method :authenticated?
   def authenticated?
     @auth_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
@@ -29,8 +29,13 @@ class ApplicationController < ActionController::Base
     redirect_to login_path unless authenticated?
   end
 
-  # Require that a user is authenticated as a student
+  # Require that a users is authenticated as a student
   def require_student
-    redirect_to root_path unless (user = authenticated?) && user.type == 'Student'
+    redirect_to root_path unless @auth_user && @auth_user.type == 'Student'
+  end
+
+  # Require a users to be a student or admin
+  def require_student_or_admin
+    redirect_to root_path unless @auth_user && ['Student', 'Admin'].include?(@auth_user.type)
   end
 end

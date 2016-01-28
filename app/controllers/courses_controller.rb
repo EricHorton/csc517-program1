@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
 
   # Display courses belonging to a person
   def my
-    # Find all courses for a user
+    # Find all courses for a users
     all = Course.joins(:histories).where histories: {user: @auth_user}
 
     # Split into current and past courses
