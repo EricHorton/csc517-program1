@@ -20,4 +20,9 @@ class CoursesController < ApplicationController
       @courses = Course.all
     end
   end
+
+  # Display a single course.
+  def show
+    redirect_to root_path unless (@course = Course.find_by_id params[:id])
+  end
 end
