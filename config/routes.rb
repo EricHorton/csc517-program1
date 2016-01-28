@@ -63,6 +63,14 @@ Rails.application.routes.draw do
   get 'create_student' => 'students#new', as: 'students'
   post 'create_student' => 'students#create', as: 'create_student'
 
+  # Passwords
+  resources :users do
+    member do
+      get 'password' => 'users#edit_password'
+      put 'password' => 'users#update_password'
+    end
+  end
+
   # Authentication
   get 'login' => 'authentication#new'
   post 'login' => 'authentication#create'
