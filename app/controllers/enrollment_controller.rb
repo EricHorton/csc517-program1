@@ -6,7 +6,7 @@ class EnrollmentController < ApplicationController
   def create
     # Get course and student
     course = Course.find_by_id params[:course_id]
-    student = Student.find_by_id params[:student_id]
+    student = Student.find_by_id params[:id]
 
     # Either find or create a new request
     @request = EnrollmentRequest.find_or_create_by course: course, student: student

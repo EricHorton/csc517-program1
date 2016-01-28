@@ -54,36 +54,43 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
+  # Run `rake routes` to list all generated routes
+
   # Index Page
   root 'index#index'
 
   # Users
-  get '/users/:id/edit' => 'users#edit', as: 'edit_user'
-  put '/users/:id' => 'users#update', as: 'user'
-  get 'create_student' => 'students#new', as: 'students'
-  post 'create_student' => 'students#create', as: 'create_student'
-
-  # Passwords
-  resources :users do
+  resources :users, only: [:edit, :update] do
+    # Passwords
     member do
       get 'password' => 'users#edit_password'
       put 'password' => 'users#update_password'
     end
   end
 
-  # Authentication
+  # Students
+  resources :students, only: [:new, :create]
+
+  # Authentication - Non RESTful
   get 'login' => 'authentication#new'
   post 'login' => 'authentication#create'
   delete 'logout' => 'authentication#destroy'
 
   # Courses
-  get '/courses' => 'courses#index'
-  get '/courses/my' => 'courses#my', as: 'my_courses'
-  get '/courses/:id' => 'courses#show', as: 'course'
+  resources :courses, only: [:index, :show] do
+    # Enrollment requests
+    resources :students, only: [] do
+      member do
+        post 'enrollment' => 'enrollment#create'
+      end
+    end
 
-  # Enrollment Requests
-  post '/courses/:course_id/students/:student_id/enrollment' => 'enrollment#create', as: 'enrollment'
+    # List student courses
+    collection do
+      get 'my' => 'courses#my', as: 'my'
+    end
+  end
 
   # Course History
-  delete '/histories/:id' => 'history#destroy', as: 'destroy_history'
+  resources :history, only: [:destroy]
 end
