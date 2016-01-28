@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
 
   # Require a student account to access
-  before_action :require_student, only: [:index]
+  before_action :require_student, only: [:index, :my]
 
   # Display all courses
   def index
@@ -19,6 +19,16 @@ class CoursesController < ApplicationController
     else
       @courses = Course.all
     end
+  end
+
+  # Display courses belonging to a person
+  def my
+    # Find all courses for a user
+    all = Course.joins(:histories).where histories: {user: @auth_user}
+
+    # Split into current and past courses
+    @current = all.where histories: {is_current: true}
+    @past = all.where histories: {is_current: false}
   end
 
   # Display a single course.

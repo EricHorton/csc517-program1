@@ -7,32 +7,4 @@
     <%= link_to 'Request Enrollment', enrollment_path(@course.id, @auth_user.id), method: 'post' %>
   <% end %>
 </div>
-<div class="panel panel-default">
-  <!-- Default panel heading -->
-  <div class="panel-heading">
-    <%= @course.coursenumber + ' - ' + @course.title %>
-  </div>
-
-  <!-- Table -->
-  <table class="table">
-    <tr>
-      <td class="col-xs-1">Instructor</td><td class="col-xs-5"><%= @course.instructor.name %></td>
-    </tr>
-
-    <tr>
-      <td class="col-xs-1">Start Date</td><td class="col-xs-5"><%= @course.start_date %></td>
-    </tr>
-
-    <tr>
-      <td class="col-xs-1">End Date</td><td class="col-xs-5"><%= @course.end_date %></td>
-    </tr>
-
-    <tr>
-      <td class="col-xs-1">Status</td><td class="col-xs-5"><%= @course.status ? 'Active' : 'Inactive' %></td>
-    </tr>
-
-    <tr>
-      <td class="col-xs-1">Description</td><td class="col-xs-5"><%= @course.description %></td>
-    </tr>
-  </table>
-</div>
+<%= render 'courses/course', course: @course %>
