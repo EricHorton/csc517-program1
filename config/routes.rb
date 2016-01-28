@@ -58,7 +58,8 @@ Rails.application.routes.draw do
   root 'index#index'
 
   # Users
-  get 'create_student' => 'students#new'
+  get 'create_student' => 'students#new', as: 'students'
+  post 'create_student' => 'students#create', as: 'create_student'
 
   # Authentication
   get 'login' => 'authentication#new'
