@@ -1,3 +1,12 @@
+<div class="well">
+  <% if @request && @request.is_fulfilled %>
+    Memeber of class
+  <% elsif @request %>
+    Request pending
+  <% else %>
+    <%= link_to 'Request Enrollment', enrollment_path(@course.id, @auth_user.id), method: 'post' %>
+  <% end %>
+</div>
 <div class="panel panel-default">
   <!-- Default panel heading -->
   <div class="panel-heading">

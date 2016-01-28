@@ -23,6 +23,11 @@ class CoursesController < ApplicationController
 
   # Display a single course.
   def show
-    redirect_to root_path unless (@course = Course.find_by_id params[:id])
+    # Find the course and student enrollment request, if any
+    @course = Course.find_by_id params[:id]
+    @request = EnrollmentRequest.find_by(course: @course, student: @auth_user) if @course
+
+    # Redirect if course does not exist
+    redirect_to root_path unless @course
   end
 end

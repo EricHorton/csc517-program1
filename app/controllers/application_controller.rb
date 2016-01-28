@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   # Helper method for returning the currently authenticated user
   helper_method :authenticated?
   def authenticated?
-    auth_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+    @auth_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
   end
 
   # Convert a string parameter to boolean

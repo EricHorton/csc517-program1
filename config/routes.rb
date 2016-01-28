@@ -68,4 +68,7 @@ Rails.application.routes.draw do
   # Courses
   get '/courses' => 'courses#index'
   get '/courses/:id' => 'courses#show', as: 'course'
+
+  # Enrollment Requests
+  post '/courses/:course_id/students/:student_id/enrollment' => 'enrollment#create', as: 'enrollment'
 end
