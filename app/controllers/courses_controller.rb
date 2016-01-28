@@ -33,9 +33,11 @@ class CoursesController < ApplicationController
 
   # Display a single course.
   def show
-    # Find the course and student enrollment request, if any
+    # Find the course, history, and student enrollment request, if any
     @course = Course.find_by_id params[:id]
-    @request = EnrollmentRequest.find_by(course: @course, student: @auth_user) if @course
+    @history = History.find_by(course: @course, user: @auth_user) if @course
+    @grade = Grade.find_by(history: @history) if @history
+    @request = EnrollmentRequest.find_by(course: @course, student: @auth_user, is_fulfilled: false) unless @history
 
     # Redirect if course does not exist
     redirect_to root_path unless @course

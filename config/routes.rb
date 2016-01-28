@@ -73,4 +73,7 @@ Rails.application.routes.draw do
 
   # Enrollment Requests
   post '/courses/:course_id/students/:student_id/enrollment' => 'enrollment#create', as: 'enrollment'
+
+  # Course History
+  delete '/histories/:id' => 'history#destroy', as: 'destroy_history'
 end
