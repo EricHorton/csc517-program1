@@ -91,6 +91,19 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'enrollment' => 'enrollment#index'
+  put 'enrollment' => 'enrollment#update'
+
+
   # Course History
-  resources :history, only: [:destroy]
+  #resources :history, only: [:index]
+  get 'history' => 'history#index'
+  get 'history/:id'=> 'history#show'
+  post 'history' => 'history#create'
+  delete 'history' => 'history#destroy'
+
+  #get 'grade' => 'grade#index'
+
+  resources :grade, only: [:new, :create, :index]
+
 end

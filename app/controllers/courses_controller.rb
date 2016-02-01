@@ -1,14 +1,13 @@
 class CoursesController < ApplicationController
 
   # Require a student account to access
-  before_action :require_student, only: [:index, :my]
+  before_action :require_student, only: [:my, :index]
 
   # Display all courses
   def index
     if params[:like]
       # Wildcard matching
       like = "%#{params[:like]}%"
-
       # Filter courses
       @courses = Course.joins(:instructor).where('(coursenumber LIKE :like ' +
                                 ' OR title LIKE :like' +
@@ -41,5 +40,13 @@ class CoursesController < ApplicationController
 
     # Redirect if course does not exist
     redirect_to root_path unless @course
+
+  def show_instructor
+    @course = Course.joins(:users).where user: {user: @auth_user}
+
+  end
+
+
+
   end
 end

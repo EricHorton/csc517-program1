@@ -38,4 +38,8 @@ class ApplicationController < ActionController::Base
   def require_student_or_admin
     redirect_to root_path unless @auth_user && ['Student', 'Admin'].include?(@auth_user.type)
   end
+
+  def require_instructor
+    redirect_to root_path unless @auth_user && @auth_user.type == 'Instructor'
+  end
 end

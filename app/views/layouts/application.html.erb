@@ -25,6 +25,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <% if @auth_user %>
 
+            <% if @auth_user.type == 'Instructor' %>
+              <%= render 'layouts/instructors_links' %>
+            <% end %>
             <!-- Render navigation links based on users type -->
             <% if @auth_user.type == 'Student' %>
               <%= render 'layouts/students_links' %>
