@@ -8,7 +8,6 @@
 
 Admin.create name: 'Default Admin', email: 'admin@portal.net', password: '3YP)g14*', deletable: false
 
-#Admin.create name: 'Default Admin', email: 'admin@portal.net', password: '3YP)g14*', deletable: false
 #Instructor.create name: 'Instructor1', email: 'instructor1@portal.net', password: '12345', deletable: true
 #Instructor.create name: 'Instructor2', email: 'instructor2@portal.net', password: '12345', deletable: true
 # Course.create coursenumber: 'CSC 501', title: 'Operating Systems', description: 'An operating system (OS) is system software that manages computer hardware and software resources and provides common services for computer programs. The operating system is a component of the system software in a computer system.', start_date:'2016-01-01', end_date:'2016-06-06', instructor_id: 2, status:true
