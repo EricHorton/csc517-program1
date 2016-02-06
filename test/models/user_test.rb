@@ -151,4 +151,29 @@ class UserTest < ActiveSupport::TestCase
     assert user.id
     assert_equal 'Instructor', user.type
   end
+
+  # Email must be unique
+  test "Create user with conflicting email" do
+    # Create first user
+    User.create do |u|
+      u.name = 'name'
+      u.email = 'email'
+      u.password = 'pass'
+      u.type = 'Admin'
+    end
+
+    # Attempt to create the second user
+    begin
+      User.create do |u|
+        u.name = 'name2'
+        u.email = 'email'
+        u.password = 'pass2'
+        u.type = 'Admin'
+      end
+
+      fail 'user should not be created'
+    rescue
+
+    end
+  end
 end
