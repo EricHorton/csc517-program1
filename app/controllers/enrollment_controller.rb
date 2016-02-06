@@ -8,7 +8,7 @@ class EnrollmentController < ApplicationController
     end
 
     if params[:id] != nil
-      @users = User.where enrollment_requests: {course_id: params[:id], is_fulfilled: false}
+      @users = Student.joins(:enrollment_requests).where enrollment_requests: {course_id: params[:id], is_fulfilled: false}
       @enrollment = EnrollmentRequest.where course_id: params[:id], is_fulfilled: false
     end
 

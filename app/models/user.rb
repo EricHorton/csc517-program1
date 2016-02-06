@@ -3,5 +3,4 @@ class User < ActiveRecord::Base
   normalize_attributes :name, :email
 
   has_many :histories
-  has_many :enrollment_requests
 end
