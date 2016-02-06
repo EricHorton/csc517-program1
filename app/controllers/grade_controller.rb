@@ -3,8 +3,8 @@ class GradeController < ApplicationController
   def index
     @courses = Course.joins(:instructor).where users: {id: @auth_user}
     if params[:id] != nil
-      @histories = History.find_by_sql('SELECT * from histories WHERE course_id = ' + params[:id] + ' and is_current=true')
-      @users = User.find_by_sql('SELECT * FROM users WHERE id in (SELECT user_id from histories WHERE course_id =' + params[:id] + ' and is_current=true)')
+      @users = User.joins(:histories).where histories: {course_id: params[:id], is_current: true}
+      @histories = History.where course_id: params[:id], is_current: true
     end
   end
 
