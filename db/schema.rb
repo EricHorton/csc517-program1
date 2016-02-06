@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160131200537) do
+ActiveRecord::Schema.define(version: 20160206223131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,15 +27,17 @@ ActiveRecord::Schema.define(version: 20160131200537) do
   add_index "course_materials", ["task_id"], name: "index_course_materials_on_task_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
-    t.string   "coursenumber",                 null: false
-    t.string   "title",                        null: false
-    t.string   "description",                  null: false
-    t.date     "start_date",                   null: false
-    t.date     "end_date",                     null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "coursenumber",                           null: false
+    t.string   "title",                                  null: false
+    t.string   "description",                            null: false
+    t.date     "start_date",                             null: false
+    t.date     "end_date",                               null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "instructor_id"
-    t.boolean  "status",        default: true
+    t.boolean  "status",                 default: true
+    t.boolean  "active",                 default: true
+    t.boolean  "inactivation_requested", default: false
   end
 
   add_index "courses", ["instructor_id"], name: "index_courses_on_instructor_id", using: :btree
