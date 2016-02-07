@@ -106,4 +106,7 @@ Rails.application.routes.draw do
 
   resources :grade, only: [:new, :create, :index]
 
+  # Messages
+  resources :messages, only: [:index, :new, :create, :show]
+  resources :posts, only: [:index, :new]
 end
