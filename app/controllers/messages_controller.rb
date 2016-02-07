@@ -10,9 +10,14 @@ class MessagesController < ApplicationController
     end
   end
 
+  # TODO restrict to active participants
   # Display a single message
   def show
-    # TODO
+    if (@message = Message.find_by_id params[:id])
+      @posts = Post.where(message: @message).order :created_at
+    else
+      redirect_to messages_path
+    end
   end
 
   # Begin creation of a new message

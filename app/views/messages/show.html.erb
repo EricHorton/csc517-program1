@@ -1,0 +1,6 @@
+<div class="well">
+  <%= @message.subject %>
+</div>
+<% @posts.each do |p| %>
+  <%= render 'messages/post', post: p %>
+<% end %>
