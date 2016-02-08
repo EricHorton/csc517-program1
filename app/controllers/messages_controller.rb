@@ -22,11 +22,33 @@ class MessagesController < ApplicationController
 
   # Begin creation of a new message
   def new
-    # TODO
+    @message = Message.new
   end
 
   # Create a new message
   def create
-    # TODO
+    # Get the other user
+    other_user = User.find_by_id params[:user_id]
+
+    # Determine instructor and student
+    instructor = @auth_user.type == 'Instructor' ? @auth_user : other_user
+    student = instructor == other_user ? @auth_user : other_user
+
+    # Create the message
+    message = Message.create do |m|
+      m.subject = params[:subject]
+      m.instructor = instructor
+      m.student = student
+    end
+
+    # Create the post
+    Post.create do |p|
+      p.message = message
+      p.user = @auth_user
+      p.content = params[:content]
+    end
+
+    # Redirect to message
+    redirect_to message_path(message)
   end
 end
