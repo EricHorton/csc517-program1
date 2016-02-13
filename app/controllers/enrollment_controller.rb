@@ -8,8 +8,8 @@ class EnrollmentController < ApplicationController
     end
 
     if params[:id] != nil
-      @enrollment = EnrollmentRequest.find_by_sql('SELECT * FROM enrollment_requests WHERE course_id =' + params[:id] + ' and is_fulfilled = false' )
-      @users = User.find_by_sql('SELECT * FROM users WHERE id in (SELECT student_id from enrollment_requests WHERE course_id =' + params[:id] + ' and is_fulfilled=false)')
+      @users = Student.joins(:enrollment_requests).where enrollment_requests: {course_id: params[:id], is_fulfilled: false}
+      @enrollment = EnrollmentRequest.where course_id: params[:id], is_fulfilled: false
     end
 
   end
