@@ -118,5 +118,6 @@ Rails.application.routes.draw do
     resources :messages, only: [:new, :create]
   end
 
+  get 'course_inactive' => 'courses#course_inactive'
 
 end

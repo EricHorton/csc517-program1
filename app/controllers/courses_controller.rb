@@ -46,7 +46,20 @@ class CoursesController < ApplicationController
 
   end
 
-
-
   end
+
+
+  def course_inactive
+    @courses = Course.joins(:instructor).where users: {id: @auth_user}
+
+    if(params[:id] != nil && params[:action] == 'course_inactive' && params[:inactivated] != 'true')
+      course = Course.find_by_id(params[:id])
+      course.inactivation_requested= true
+      course.save!
+
+      redirect_to course_inactive_path(:inactivated => true, :id =>params[:id])
+    end
+  end
+
+
 end
