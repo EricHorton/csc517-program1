@@ -108,4 +108,17 @@ Rails.application.routes.draw do
 
   # Admins
   match ':controller(/:action(/:id))', :via => [:get, :post]
+
+  resources :course_material, only: [:new, :create, :index]
+
+  # Messages
+  resources :messages, only: [:index, :show] do
+    resources :posts, only: [:new, :create]
+  end
+
+  resources :users, only: [] do
+    resources :messages, only: [:new, :create]
+  end
+
+  get 'course_inactive' => 'courses#course_inactive'
 end
