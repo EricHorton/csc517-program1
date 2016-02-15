@@ -108,10 +108,6 @@ Rails.application.routes.draw do
 
   resources :grade, only: [:new, :create, :index]
 
-<<<<<<< HEAD
-
-=======
->>>>>>> fixes
   resources :course_material, only: [:new, :create, :index]
 
   # Messages
