@@ -40,14 +40,12 @@ class CoursesController < ApplicationController
 
     # Redirect if course does not exist
     redirect_to root_path unless @course
+  end
 
   def show_instructor
     @course = Course.joins(:users).where user: {user: @auth_user}
 
   end
-
-  end
-
 
   def course_inactive
     @courses = Course.joins(:instructor).where users: {id: @auth_user}

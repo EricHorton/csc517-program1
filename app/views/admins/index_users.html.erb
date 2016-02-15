@@ -1,0 +1,44 @@
+<div class="users index">
+  <h2>Users</h2>
+  <table class="listing" summary="User list">
+    <tr class="header">
+      <th>ID</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>Name</th>
+      <th>&nbsp;</th>
+      <th>Email</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>Type</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>Actions</th>
+    </tr>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <td><%= user.name %></td>
+          <th>&nbsp;</th>
+          <td><%= user.email %></td>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <td><%= user.type %></td>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <td class="actions">
+            <%= link_to 'Show',  %>
+            <%= link_to 'Delete',  %>
+            <%= link_to("Show", {:action => 'show_users', :id => user.id}, :class => 'action show_users') %>
+            <%= link_to("Delete", {:action => 'delete_user', :id => user.id}, :class => 'action delete_user') %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+</div>
