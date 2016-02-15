@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  before_action :require_auth
+  before_action :require_admin
 
   def index
     @admins = Admin.filter
@@ -46,7 +46,7 @@ class AdminsController < ApplicationController
   end
 
   def index_users
-    @users = User.where("type != ?", 'Admin')
+    @users = User.where.not type: 'Admin'
   end
 
   # Display a single user.

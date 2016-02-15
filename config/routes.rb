@@ -127,5 +127,9 @@ Rails.application.routes.draw do
     member do
       get 'delete' => 'admins#delete'
     end
+
+    collection do
+      get 'users' => 'admins#index_users'
+    end
   end
 end

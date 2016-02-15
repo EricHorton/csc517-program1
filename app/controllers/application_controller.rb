@@ -3,7 +3,6 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  # TODO should this be exception instead?
   protect_from_forgery with: :null_session
 
   # Force login
@@ -47,5 +46,9 @@ class ApplicationController < ActionController::Base
   # Require a user to be a Student or Instructor
   def require_student_or_instructor
     redirect_to root_path unless @auth_user && ['Student', 'Instructor'].include?(@auth_user.type)
+  end
+
+  def require_admin
+    redirect_to root_path unless @auth_user.type == 'Admin'
   end
 end
