@@ -91,11 +91,13 @@ Rails.application.routes.draw do
     end
   end
 
+  # TODO change this to the restufl format
   get 'enrollment' => 'enrollment#index'
   put 'enrollment' => 'enrollment#update'
 
 
   # Course History
+  # TODO change this to the restful format
   #resources :history, only: [:index]
   get 'history' => 'history#index'
   get 'history/:id'=> 'history#show'
@@ -105,9 +107,6 @@ Rails.application.routes.draw do
   #get 'grade' => 'grade#index'
 
   resources :grade, only: [:new, :create, :index]
-
-  # Admins
-  match ':controller(/:action(/:id))', :via => [:get, :post]
 
   resources :course_material, only: [:new, :create, :index]
 
@@ -120,5 +119,10 @@ Rails.application.routes.draw do
     resources :messages, only: [:new, :create]
   end
 
+  # TODO change this to the restful resource format
   get 'course_inactive' => 'courses#course_inactive'
+
+  # Admins
+  # TODO change this to the restful resource format
+  match ':controller(/:action(/:id))', :via => [:get, :post]
 end
