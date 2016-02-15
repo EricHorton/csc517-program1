@@ -124,5 +124,11 @@ Rails.application.routes.draw do
 
   # Admins
   # TODO change this to the restful resource format
-  match ':controller(/:action(/:id))', :via => [:get, :post]
+  # match ':controller(/:action(/:id))', :via => [:get, :post]
+
+  resources :admins do
+    member do
+      get 'delete' => 'admins#delete'
+    end
+  end
 end

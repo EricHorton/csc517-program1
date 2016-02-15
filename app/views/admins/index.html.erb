@@ -25,9 +25,9 @@
           <th>&nbsp;</th>
           <th>&nbsp;</th>
           <th>&nbsp;</th>
-          <td class="actions"><br />
-            <%= link_to("Show", {:action => 'show', :id => admin.id}, :class => 'action show') %>
-            <%= link_to("Delete", {:action => 'delete', :id => admin.id}, :class => 'action delete') %>
+          <td class="actions">
+            <%= link_to 'Show', admin_path(admin) %>
+            <%= link_to 'Delete', delete_admin_path(admin) %>
           </td>
         </tr>
     <% end %>

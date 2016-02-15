@@ -1,6 +1,6 @@
 <%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
 
-<%= bootstrap_form_for @admin, url: '/admins/create', html: { method: :post } do |f| %>
+<%= bootstrap_form_for @admin, method: 'post' do |f| %>
     <% label = 'Filter'; label += " - #{params[:like]}" if params[:like] && !params[:like].empty? %>
     <%= f.text_field :name, :placeholder => 'Full Name' %>
 
@@ -12,49 +12,3 @@
 
     <%= f.submit 'Add' %>
 <% end %>
-
-<!--<div class="admins new">-->
-  <!--<h2>Create Admin</h2>-->
-  <!--<%= form_for(:admin, :url => {:action => 'create'}) do |f| %>-->
-      <!--<table summary="Admin form fields">-->
-        <!--<tr>-->
-          <!--<th>Full Name</th>-->
-          <!--<th>&nbsp;</th>-->
-          <!--<th>&nbsp;</th>-->
-          <!--<td><%= f.text_field(:name) %></td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-          <!--<td colspan="5">&nbsp;</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-          <!--<th>Email</th>-->
-          <!--<th>&nbsp;</th>-->
-          <!--<th>&nbsp;</th>-->
-          <!--<td><%= f.text_field(:email) %></td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-          <!--<td colspan="5">&nbsp;</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-          <!--<th>Password</th>-->
-          <!--<th>&nbsp;</th>-->
-          <!--<th>&nbsp;</th>-->
-          <!--<td><%= f.password_field(:password_digest) %></td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-          <!--<td colspan="5">&nbsp;</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-          <!--<th>Confirm Password</th>-->
-          <!--<th>&nbsp;</th>-->
-          <!--<th>&nbsp;</th>-->
-          <!--<td><%= f.password_field(:confirm_password) %></td>-->
-        <!--</tr>-->
-      <!--</table>-->
-
-      <!--<br />-->
-      <!--<div class="form-buttons">-->
-        <!--<%= submit_tag("Add") %>-->
-      <!--</div>-->
-  <!--<% end %>-->
-<!--</div>-->
