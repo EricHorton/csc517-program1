@@ -1,0 +1,36 @@
+<div class="admins index">
+  <h2>Admins</h2>
+  <%= link_to("Add new Admin", {:action => 'new'}, :class => 'action new') %>
+  <table class="listing" summary="Admin list">
+    <tr class="header">
+      <th>ID</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>Name</th>
+      <th>&nbsp;</th>
+      <th>Email</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>Actions</th>
+    </tr>
+    <% @admins.each do |admin| %>
+        <tr>
+          <td><%= admin.id %></td>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <td><%= admin.name %></td>
+          <th>&nbsp;</th>
+          <td><%= admin.email %></td>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <td class="actions"><br />
+            <%= link_to("Show", {:action => 'show', :id => admin.id}, :class => 'action show') %>
+            <%= link_to("Delete", {:action => 'delete', :id => admin.id}, :class => 'action delete') %>
+          </td>
+          <br />
+        </tr>
+    <% end %>
+  </table>
+</div>
