@@ -39,6 +39,26 @@ class AdminsController < ApplicationController
     redirect_to(:action => 'index')
   end
 
+  def index_users
+    @users = User.where("type != ?", 'Admin')
+  end
+
+  # Display a single user.
+  def show_users
+    # Find the details of the user requested
+    @display_user = User.find_by_id params[:id]
+  end
+
+  def delete_user
+    @user = User.find_by_id params[:id]
+  end
+
+  def destroy_user
+    user = User.find_by_id params[:id]
+    user.destroy
+    redirect_to(:action => 'index_users')
+  end
+
   def index_courses
     @courses = Course.all
   end
