@@ -123,9 +123,6 @@ Rails.application.routes.draw do
   get 'course_inactive' => 'courses#course_inactive'
 
   # Admins
-  # TODO change this to the restful resource format
-  # match ':controller(/:action(/:id))', :via => [:get, :post]
-
   resources :admins do
     member do
       get 'delete' => 'admins#delete'

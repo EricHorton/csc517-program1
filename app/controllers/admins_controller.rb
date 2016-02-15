@@ -17,15 +17,17 @@ class AdminsController < ApplicationController
 
   def create
     # Instantiate a new object using form parameters
-    @admin = Admin.new(params.require(:admin).permit(:name, :email, :password))
+    attrs = params.require(:admin).permit(:name, :email, :password)
+    @admin = Admin.create(attrs) unless params[:admin][:password] != params[:admin][:confirm_password]
 
     # Save the object
-    if @admin.save
+    if @admin
       # If save succeeds, redirect to the index action
-      redirect_to :action => 'index'
+      redirect_to admins_path
     else
       # If save fails, redisplay the form so user can fix problems
-      render 'new'
+      @admin = Admin.new
+      render new_admin_path
     end
   end
 
@@ -35,8 +37,12 @@ class AdminsController < ApplicationController
 
   def destroy
     admin = Admin.find_by_id params[:id]
-    admin.destroy
-    redirect_to(:action => 'index')
+
+    if admin.deletable && admin.id != session[:user_id]
+      admin.destroy
+    end
+
+    redirect_to admins_path
   end
 
   def index_users
