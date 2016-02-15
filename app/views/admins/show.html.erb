@@ -1,0 +1,32 @@
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="admins show">
+  <h2>Show Admin</h2>
+
+  <table summary="Admin Details">
+    <tr>
+      <th>Name</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <td><%= @display_admin.name %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <td><%= @display_admin.email %></td>
+    </tr>
+    <tr>
+      <th>Created At</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <td><%= @display_admin.created_at %></td>
+    </tr>
+    <tr>
+      <th>Updated At</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <td><%= @display_admin.updated_at %></td>
+    </tr>
+  </table>
+</div>

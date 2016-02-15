@@ -106,13 +106,6 @@ Rails.application.routes.draw do
 
   resources :grade, only: [:new, :create, :index]
 
-  # Messages
-  resources :messages, only: [:index, :show] do
-    resources :posts, only: [:new, :create]
-  end
-
-  resources :users, only: [] do
-    resources :messages, only: [:new, :create]
-  end
-
+  # Admins
+  match ':controller(/:action(/:id))', :via => [:get, :post]
 end
