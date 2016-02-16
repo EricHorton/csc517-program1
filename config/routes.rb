@@ -78,7 +78,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'authentication#destroy'
 
   # Courses
-  resources :courses, only: [:index, :show] do
+  resources :courses, only: [:index, :show, :new, :create] do
     # Enrollment requests
     resources :students, only: [] do
       member do

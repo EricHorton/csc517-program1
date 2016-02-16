@@ -1,9 +1,10 @@
 class CoursesController < ApplicationController
 
   # Require a student account to access
-  before_action :require_student, only: [:my, :index]
+  before_action :require_student, only: [:my]
+  before_action :require_admin, only: [:new]
 
-  # Display all courses
+  # Display all courses for a user
   def index
     if params[:like]
       # Wildcard matching
@@ -19,6 +20,42 @@ class CoursesController < ApplicationController
       @courses = Course.all
     end
   end
+
+  # Add a new course to the system
+  def new
+    @course = Course.new
+  end
+
+
+  def create
+    # Instantiate a new object using form parameters
+    attrs = params.permit(:coursenumber, :title, :description, :start_date, :end_date, :created_at, :updated_at, :status, :active, :inactivation_request)
+    @instructor = Instructor.find_by_email params[:email]
+
+    attrs[:instructor] = @instructor
+    if @instructor
+      @course = Course.create(attrs)
+      redirect_to courses_path
+    else
+      @course = Course.new
+      render new_course_path
+    end
+  end
+  # def create
+  #
+  #
+  #   # Instantiate a new object using form parameters
+  #   @course = Course.new(params.require(:course).permit(:coursenumber, :title, :description, :start_date, :end_date, :created_at, :updated_at, :email, :status, :active, :inactivation_request))
+  #
+  #   # Save the object
+  #   if @course.save
+  #     # If save succeeds, redirect to the index action
+  #     redirect_to :action => 'index_courses'
+  #   else
+  #     # If save fails, redisplay the form so user can fix problems
+  #     render 'new_course'
+  #   end
+  # end
 
   # Display courses belonging to a person
   def my

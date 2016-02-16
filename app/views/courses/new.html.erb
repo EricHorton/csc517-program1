@@ -1,7 +1,5 @@
 <%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
-
-<%= bootstrap_form_for @course, url: '/admins/create_course', html: { method: :post } do |f| %>
-    <% label = 'Filter'; label += " - #{params[:like]}" if params[:like] && !params[:like].empty? %>
+<%= bootstrap_form_tag url: courses_path, method: 'post' do |f| %>
     <%= f.text_field :coursenumber, :placeholder => 'Course Number' %>
 
     <%= f.text_field :title, :placeholder => 'Title' %>
@@ -12,8 +10,7 @@
 
     <%= f.date_field :end_date, :placeholder => 'End Date' %>
 
-    <%= f.number_field :instructor_id, :placeholder => 'Instructor id' %>
-
+    <%= f.text_field :email, :placeholder => 'Instructor Email' %>
 
     <%= f.submit 'Add' %>
 <% end %>
