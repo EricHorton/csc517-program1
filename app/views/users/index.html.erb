@@ -2,23 +2,26 @@
   <div class="panel-heading">
     Users
   </div>
-  <table class="table" summary="User list">
-    <tr class="header">
-      <th>ID</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Type</th>
-      <th colspan="2">Actions</th>
-    </tr>
-    <% @users.each do |user| %>
-        <tr>
-          <td><%= user.id %></td>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
-          <td><%= user.type %></td>
-          <td><%= link_to 'Show Courses', user_path(user) %></td>
-          <td><%= link_to 'Delete User', delete_user_path(user) %></td>
-        </tr>
-    <% end %>
-  </table>
+  <div class="panel-body">
+    <%= link_to 'Add a new user', new_user_path %>
+    <table class="table" summary="User list">
+      <tr class="header">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Type</th>
+        <th colspan="2">Actions</th>
+      </tr>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.type %></td>
+            <td><%= link_to 'Show Courses', user_path(user) %></td>
+            <td><%= link_to 'Delete User', delete_user_path(user) %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
 </div>

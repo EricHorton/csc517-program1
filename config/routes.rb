@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   root 'index#index'
 
   # Users
-  resources :users, only: [:edit, :update, :index, :show, :delete, :destroy] do
+  resources :users do
     # Passwords
     member do
       get 'password' => 'users#edit_password'

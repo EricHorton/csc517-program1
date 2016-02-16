@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :require_student_or_admin, only: [:edit]
-  before_action :require_admin, only: [:index, :show, :delete, :destroy]
+  before_action :require_admin, except: [:edit]
 
   # Check that if the user is a student they are requesting their information
   def student_check
@@ -99,4 +99,25 @@ class UsersController < ApplicationController
     end
   end
 
+  # Render the template for creating a new user
+  def new
+    @user = User.new
+  end
+
+  # Create a new user
+  def create
+    # Get the attributes and password confirmation
+    attrs = params.require(:user).permit(:name, :email, :type, :password)
+    password_conf = params.require(:user)[:password_confirmation]
+
+    # Create if able
+    user = User.create(attrs) if attrs[:password] == password_conf
+
+    # redirect
+    if user
+      redirect_to users_path
+    else
+      redirect_to new_user_path
+    end
+  end
 end
