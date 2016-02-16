@@ -38,4 +38,12 @@ user: admin@portal.net
 pass: 3YP)g14*
 ```
 
-<!-- TODO site usage instructions -->
+## Usage
+### Account Creation
+Admins and Instructors must request an account be created by an existing site Admin. Students may sign up for an account by navigating to the site and requesting to create one. 
+
+### Profile Editing
+Users may edit their profile by logging in and selecting the dropdown menu in the top right. The log out link is also located in the user dropdown.
+
+### Additional
+Users of different types have access to different links in the navigation bar. Jump in and explore.
