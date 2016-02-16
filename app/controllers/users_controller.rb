@@ -19,11 +19,16 @@ class UsersController < ApplicationController
     # Find the details of the user requested
     @display_user = User.find_by_id params[:id]
       # Find all courses for a users
-      all = Course.joins(:histories).where histories: {user: @display_user}
+    if @display_user.type == 'Student'
+        all = Course.joins(:histories).where histories: {user: @display_user}
 
-      # Split into current and past courses
-      @current = all.where histories: {is_current: true}
-      @past = all.where histories: {is_current: false}
+        # Split into current and past courses
+        @current = all.where histories: {is_current: true}
+        @past = all.where histories: {is_current: false}
+    else
+      @current = Course.where instructor: @display_user
+
+    end
   end
 
   def delete

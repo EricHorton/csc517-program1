@@ -7,9 +7,11 @@
     <%= render 'courses/course', course: c %>
 <% end %>
 
-<div class="well">
-  <h3>Past</h3>
-</div>
-<% @past.each do |c| %>
-    <%= render 'courses/course', course: c %>
+<% if @past %>
+  <div class="well">
+    <h3>Past</h3>
+  </div>
+  <% @past.each do |c| %>
+      <%= render 'courses/course', course: c %>
+  <% end %>
 <% end %>
