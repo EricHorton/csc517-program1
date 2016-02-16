@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :require_student_or_admin, only: [:edit]
-  before_action :require_admin, only: [:index, :show]
+  before_action :require_admin, only: [:index, :show, :delete, :destroy]
 
   # Check that if the user is a student they are requesting their information
   def student_check
@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Show all non Admin users.
   def index
     @users = User.where.not type: 'Admin'
   end
@@ -31,17 +32,19 @@ class UsersController < ApplicationController
     end
   end
 
+  # Deletion confirmation page
   def delete
     @user = User.find_by_id params[:id]
   end
 
+  # Delete a user
   def destroy
     user = User.find_by_id params[:id]
-    user.destroy
+    user.destroy if user.deletable
     redirect_to(:action => 'index')
   end
 
-  # Get a page for editing a users
+  # Get a page for editing a user
   def edit
     begin
       student_check
@@ -54,7 +57,6 @@ class UsersController < ApplicationController
   # Update user
   def update
     begin
-
       student_check
       attrs = params.require(:user).permit :name, :email
 
@@ -95,6 +97,6 @@ class UsersController < ApplicationController
     rescue
       redirect_to root_path
     end
-
   end
+
 end

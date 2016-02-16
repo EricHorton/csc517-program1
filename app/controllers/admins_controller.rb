@@ -1,6 +1,8 @@
 class AdminsController < ApplicationController
+  # Require admin status to access any action in the admins controller
   before_action :require_admin
 
+  # List all admins
   def index
     @admins = Admin.filter
   end
@@ -11,10 +13,12 @@ class AdminsController < ApplicationController
     @display_admin = Admin.find_by_id params[:id]
   end
 
+  # Request the creation page for an admin
   def new
     @admin = Admin.new
   end
 
+  # Create a new admin
   def create
     # Instantiate a new object using form parameters
     attrs = params.require(:admin).permit(:name, :email, :password)
@@ -31,10 +35,12 @@ class AdminsController < ApplicationController
     end
   end
 
+  # Get the deletion confirmation page for an admin
   def delete
     @admin = Admin.find_by_id params[:id]
   end
 
+  # Delete an admin, permanently!
   def destroy
     admin = Admin.find_by_id params[:id]
 
@@ -44,18 +50,5 @@ class AdminsController < ApplicationController
 
     redirect_to admins_path
   end
-
-
-
-  # Display a single course.
-  def show_course
-    # Find the details of the admin requested
-    @display_course = Course.find_by_id params[:id]
-  end
-
-
-
-
-
 
 end

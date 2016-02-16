@@ -1,8 +1,10 @@
 class CoursesController < ApplicationController
 
-  # Require a student account to access
+  # Require a student account to access current courses
   before_action :require_student, only: [:my]
-  before_action :require_admin, only: [:new]
+
+  # Require admin account to add a course
+  before_action :require_admin, only: [:new, :create]
 
   # Display all courses for a user
   def index
@@ -26,7 +28,7 @@ class CoursesController < ApplicationController
     @course = Course.new
   end
 
-
+  # Create a new course
   def create
     # Instantiate a new object using form parameters
     attrs = params.permit(:coursenumber, :title, :description, :start_date, :end_date, :created_at, :updated_at, :status, :active, :inactivation_request)
@@ -41,23 +43,8 @@ class CoursesController < ApplicationController
       render new_course_path
     end
   end
-  # def create
-  #
-  #
-  #   # Instantiate a new object using form parameters
-  #   @course = Course.new(params.require(:course).permit(:coursenumber, :title, :description, :start_date, :end_date, :created_at, :updated_at, :email, :status, :active, :inactivation_request))
-  #
-  #   # Save the object
-  #   if @course.save
-  #     # If save succeeds, redirect to the index action
-  #     redirect_to :action => 'index_courses'
-  #   else
-  #     # If save fails, redisplay the form so user can fix problems
-  #     render 'new_course'
-  #   end
-  # end
 
-  # Display courses belonging to a person
+  # Display courses belonging to a student
   def my
     # Find all courses for a users
     all = Course.joins(:histories).where histories: {user: @auth_user}
@@ -79,11 +66,7 @@ class CoursesController < ApplicationController
     redirect_to root_path unless @course
   end
 
-  def show_instructor
-    @course = Course.joins(:users).where user: {user: @auth_user}
-
-  end
-
+  # Set a course as inactive.
   def course_inactive
     @courses = Course.joins(:instructor).where users: {id: @auth_user}
 
