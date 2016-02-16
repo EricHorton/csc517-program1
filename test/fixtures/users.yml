@@ -10,5 +10,8 @@ one:
   password_digest: <%= BCrypt::Password.create('password') %>
 # column: value
 #
-#two: {}
-#  column: value
+two:
+  name: 'admin'
+  email: 'testadmin@portal.net'
+  password_digest: <%= BCrypt::Password.create('password') %>
+  type: 'Admin'
