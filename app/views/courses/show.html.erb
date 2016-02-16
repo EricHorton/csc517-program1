@@ -20,3 +20,10 @@
   </div>
 <% end %>
 <%= render 'courses/course', course: @course %>
+<br/>
+<h3>Course Materials</h3>
+
+<% CourseMaterial.where(course_id: @course.id).find_each do |c|%>
+    <%= render 'course_material/course_material', course: c %>
+    <br/>
+<% end %>
