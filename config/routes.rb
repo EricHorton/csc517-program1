@@ -89,21 +89,19 @@ Rails.application.routes.draw do
     # List student courses
     collection do
       get 'my' => 'courses#my', as: 'my'
+      get 'inactivate' => 'courses#inactivate'
     end
   end
 
-  # TODO change this to the restufl format
   get 'enrollment' => 'enrollment#index'
   put 'enrollment' => 'enrollment#update'
 
-
   # Course History
-  # TODO change this to the restful format
-  #resources :history, only: [:index]
   get 'history' => 'history#index'
   get 'history/:id'=> 'history#show'
   post 'history' => 'history#create'
   delete 'history' => 'history#destroy'
+
 
   #get 'grade' => 'grade#index'
 
@@ -120,11 +118,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:new, :create]
   end
 
-  # TODO change this to the restful resource format
-  get 'course_inactive' => 'courses#course_inactive'
-
   # Admins
-  resources :admins do
+  resources :admins, except: [:edit] do
     member do
       get 'delete' => 'admins#delete'
     end

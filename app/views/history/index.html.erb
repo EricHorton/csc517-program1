@@ -17,7 +17,7 @@
         </tr>
         </thead>
         <% @users.each do |u| %>
-          <% @history_record = History.find_by_sql('SELECT * from histories WHERE course_id = ' + params[:id] + ' and is_current=true and user_id = ' + u.id.to_s)%>
+          <% @history_record = History.where course_id: params[:id], is_current: true, user: u %>
           <tr>
             <td><%= u.name %></td>
             <td><%= u.email %></td>

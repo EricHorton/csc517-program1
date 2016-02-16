@@ -67,7 +67,7 @@ class CoursesController < ApplicationController
   end
 
   # Set a course as inactive.
-  def course_inactive
+  def inactivate
     @courses = Course.joins(:instructor).where users: {id: @auth_user}
 
     if(params[:id] != nil && params[:action] == 'course_inactive' && params[:inactivated] != 'true')
