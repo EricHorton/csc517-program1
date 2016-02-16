@@ -1,31 +1,25 @@
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<%= link_to '<< Back to List', admins_path %>
 
-<div class="admins show">
-  <h2>Show Admin</h2>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Show Admin
+  </div>
 
-  <table summary="Admin Details">
+  <table summary="Admin Details" class="table">
     <tr>
       <th>Name</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
       <td><%= @display_admin.name %></td>
     </tr>
     <tr>
       <th>Email</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
       <td><%= @display_admin.email %></td>
     </tr>
     <tr>
       <th>Created At</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
       <td><%= @display_admin.created_at %></td>
     </tr>
     <tr>
       <th>Updated At</th>
-      <th>&nbsp;</th>
-      <th>&nbsp;</th>
       <td><%= @display_admin.updated_at %></td>
     </tr>
   </table>

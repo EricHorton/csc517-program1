@@ -8,6 +8,8 @@
 
 Admin.create name: 'Default Admin', email: 'admin@portal.net', password: '3YP)g14*', deletable: false
 
+
+# TODO clean up seeds file for prod
 Student.create name: 'Student1', email: 'student1@portal.net', password: '12345', deletable: true
 Student.create name: 'Student2', email: 'student2@portal.net', password: '12345', deletable: true
 Instructor.create name: 'Instructor1', email: 'instructor1@portal.net', password: '12345', deletable: true

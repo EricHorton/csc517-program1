@@ -1,7 +1,6 @@
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<%= link_to '<< Back to List', admins_path %>
 
 <%= bootstrap_form_for @admin, method: 'post' do |f| %>
-    <% label = 'Filter'; label += " - #{params[:like]}" if params[:like] && !params[:like].empty? %>
     <%= f.text_field :name, :placeholder => 'Full Name' %>
 
     <%= f.email_field :email, :placeholder => 'User Email' %>
