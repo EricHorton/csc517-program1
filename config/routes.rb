@@ -60,11 +60,12 @@ Rails.application.routes.draw do
   root 'index#index'
 
   # Users
-  resources :users, only: [:edit, :update] do
+  resources :users, only: [:edit, :update, :index, :show, :delete, :destroy] do
     # Passwords
     member do
       get 'password' => 'users#edit_password'
       put 'password' => 'users#update_password'
+      get 'delete' => 'users#delete'
     end
   end
 
@@ -126,10 +127,6 @@ Rails.application.routes.draw do
   resources :admins do
     member do
       get 'delete' => 'admins#delete'
-    end
-
-    collection do
-      get 'users' => 'admins#index_users'
     end
   end
 end

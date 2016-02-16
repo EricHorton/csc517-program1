@@ -1,12 +1,39 @@
 class UsersController < ApplicationController
 
   before_action :require_student_or_admin, only: [:edit]
+  before_action :require_admin, only: [:index, :show]
 
   # Check that if the user is a student they are requesting their information
   def student_check
     if @auth_user.type == 'Student' && @auth_user.id != Integer(params[:id])
       raise 'A student cannot edit another user'
     end
+  end
+
+  def index
+    @users = User.where.not type: 'Admin'
+  end
+
+  # Display a single user.
+  def show
+    # Find the details of the user requested
+    @display_user = User.find_by_id params[:id]
+      # Find all courses for a users
+      all = Course.joins(:histories).where histories: {user: @display_user}
+
+      # Split into current and past courses
+      @current = all.where histories: {is_current: true}
+      @past = all.where histories: {is_current: false}
+  end
+
+  def delete
+    @user = User.find_by_id params[:id]
+  end
+
+  def destroy
+    user = User.find_by_id params[:id]
+    user.destroy
+    redirect_to(:action => 'index')
   end
 
   # Get a page for editing a users
