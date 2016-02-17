@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  before_action :require_student_or_admin, only: [:edit]
-  before_action :require_admin, except: [:edit]
+  before_action :require_student_or_admin, only: [:edit, :update, :edit_password, :update_password]
+  before_action :require_admin, except: [:edit, :update, :edit_password, :update_password]
 
   # Check that if the user is a student they are requesting their information
   def student_check
