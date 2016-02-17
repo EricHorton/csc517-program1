@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   before_action :require_student, only: [:my]
 
   # Require admin account to add a course
-  before_action :require_admin, only: [:new, :create, :delete, :destroy]
+  before_action :require_admin, only: [:new, :create, :delete, :destroy, :edit, :update]
 
   # Display all courses for a user
   def index
@@ -76,6 +76,26 @@ class CoursesController < ApplicationController
       course.save!
 
       redirect_to course_inactive_path(:inactivated => true, :id =>params[:id])
+    end
+  end
+
+  # Edit the details of the course
+  def edit
+    @course = Course.find_by_id params[:id]
+  end
+
+  def update
+    attrs = params.permit(:coursenumber, :title, :description, :start_date, :end_date, :created_at, :updated_at, :status, :active, :inactivation_request)
+    @instructor = Instructor.find_by_email params[:email]
+    attrs[:instructor] = @instructor
+
+    @course = Course.find_by_id params[:id]
+
+    if @instructor
+      @course.update(attrs)
+      redirect_to courses_path
+    else
+      redirect_to edit_course_path(@course)
     end
   end
 
