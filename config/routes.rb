@@ -94,6 +94,7 @@ Rails.application.routes.draw do
     collection do
       get 'my' => 'courses#my', as: 'my'
       get 'inactivate' => 'courses#inactivate'
+      delete 'toggleactivation' => 'courses#toggleactivation'
     end
   end
 
@@ -111,7 +112,7 @@ Rails.application.routes.draw do
 
   resources :grade, only: [:new, :create, :index]
 
-  resources :course_material, only: [:new, :create, :index]
+  resources :course_material, only: [:new, :create, :index, :edit, :update]
 
   # Messages
   resources :messages, only: [:index, :show] do

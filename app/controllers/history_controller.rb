@@ -4,14 +4,16 @@ class HistoryController < ApplicationController
   def index
     if @auth_user.type == 'Instructor'
       @courses = Course.joins(:instructor).where users: {id: @auth_user}
+    elsif (@auth_user.type == "Admin")
+      @courses = Course.where status: true
     end
 
-    if(session[:courseid] != nil && params[:id] == nil)
-      params[:id] = session[:courseid]
-    end
 
     if params[:id] != nil
       @users = User.joins(:histories).where histories: {course_id: params[:id], is_current: true}
+    #elsif params[:format] != nil
+     # @users = User.joins(:histories).where histories: {course_id: params[:format], is_current: true}
+      #params[:id] = params[:format]
     end
 
   end
@@ -33,8 +35,7 @@ class HistoryController < ApplicationController
       if(params[:courseid] == nil)
         redirect_to course_path(history.course)
       else
-        session[:courseid] = params[:courseid]
-        redirect_to history_path
+        redirect_to history_path(:id => params[:courseid])
       end
     else
       redirect_to root_path

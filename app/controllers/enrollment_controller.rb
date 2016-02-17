@@ -5,7 +5,10 @@ class EnrollmentController < ApplicationController
   def index
     if @auth_user.type == 'Instructor'
       @courses = Course.joins(:instructor).where users: {id: @auth_user}
+    elsif @auth_user.type == 'Admin'
+      @courses = Course.where status: true
     end
+
 
     if params[:id] != nil
       @users = Student.joins(:enrollment_requests).where enrollment_requests: {course_id: params[:id], is_fulfilled: false}

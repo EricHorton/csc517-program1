@@ -3,7 +3,7 @@
   <%= bootstrap_form_tag url:new_course_material_path ,method: 'get' do |f|%>
       <%= f.select 'id',options_from_collection_for_select(@courses, :id, :title, params[:id]), {:prompt => "Select Course"}%>
       <div style="display:inline-block;">
-        <%= f.submit 'Post Material', class: 'btn btn-default' %>
+        <span><%= f.submit 'Post Material', class: 'btn btn-default' %></span>
       </div>
   <% end %>
   <br/>
@@ -17,8 +17,9 @@
         <tr>
           <th>Id</th>
           <th>Title</th>
-          <th class="col-md-8">Description</th>
+          <th class="col-md-6">Description</th>
           <th>Deadline</th>
+          <th>Action</th>
         </tr>
         </thead>
         <% CourseMaterial.where(course_id: params[:id]).find_each do |c| %>
@@ -28,6 +29,7 @@
               <td><%= task.title %></td>
               <td><%= task.description %></td>
               <td><%= task.deadline %></td>
+              <td><%= link_to 'Edit', edit_course_material_path(task.id), class: 'btn btn-default' %></td>
             </tr>
         <% end %>
       </table>

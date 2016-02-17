@@ -66,7 +66,7 @@ class CoursesController < ApplicationController
     redirect_to root_path unless @course
   end
 
-  # Set a course as inactive.
+  # Set a request for course to be inactive.
   def inactivate
     @courses = Course.joins(:instructor).where users: {id: @auth_user}
 
@@ -78,6 +78,25 @@ class CoursesController < ApplicationController
       redirect_to course_inactive_path(:inactivated => true, :id =>params[:id])
     end
   end
+
+  #toggle course status
+  def toggleactivation
+    courseid = params[:format]
+    course = Course.find_by_id params[:format]
+
+    if course.inactivation_requested== true and course.status == true
+      course.inactivation_requested= false
+      course.status = false
+      course.save!
+    elsif course.inactivation_requested== false and course.status == false
+      course.status = true
+      course.save!
+    end
+
+    redirect_to courses_path
+
+  end
+
 
   # Edit the details of the course
   def edit
