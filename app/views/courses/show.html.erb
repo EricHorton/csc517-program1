@@ -1,9 +1,15 @@
 <% if @history && @history.is_current %>
-  <div class="well"><%= link_to 'Drop Course', history_path, method: 'delete' %></div>
+  <div class="well">
+    <%= link_to 'Drop Course', history_path(id: @history), method: 'delete' %>
+  </div>
 <% elsif @history %>
-  <div class="well">Course is not active or has been dropped</div>
+  <div class="well">
+    Course is not active or has been dropped
+  </div>
 <% elsif @request %>
-  <div class="well">Enrollment Request pending</div>
+  <div class="well">
+    Enrollment Request pending
+  </div>
 <% elsif @auth_user.type == 'Student' %>
   <div class="well">
     <%= link_to 'Request Enrollment', enrollment_course_student_path(@course.id, @auth_user.id), method: 'post' %>

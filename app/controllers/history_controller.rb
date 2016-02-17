@@ -32,10 +32,10 @@ class HistoryController < ApplicationController
     if history
       history.is_current = false
       history.save
-      if(params[:courseid] == nil)
+      if(params[:course_id] == nil)
         redirect_to course_path(history.course)
       else
-        redirect_to history_path(:id => params[:courseid])
+        redirect_to history_path(:id => params[:course_id])
       end
     else
       redirect_to root_path
