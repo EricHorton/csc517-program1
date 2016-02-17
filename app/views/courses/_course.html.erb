@@ -25,5 +25,13 @@
     <tr>
       <td class="col-xs-1">Description</td><td class="col-xs-5"><%= course.description %></td>
     </tr>
+
+    <% if (@auth_user.type == 'Admin') %>
+    <tr>
+      <td class="col-xs-1">
+        <%= link_to("Delete Course", delete_course_path(course), :class => 'btn btn-default') %>
+      </td>
+    </tr>
+    <% end %>
   </table>
 </div>

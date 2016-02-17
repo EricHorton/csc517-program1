@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   before_action :require_student, only: [:my]
 
   # Require admin account to add a course
-  before_action :require_admin, only: [:new, :create]
+  before_action :require_admin, only: [:new, :create, :delete, :destroy]
 
   # Display all courses for a user
   def index
@@ -77,6 +77,17 @@ class CoursesController < ApplicationController
 
       redirect_to course_inactive_path(:inactivated => true, :id =>params[:id])
     end
+  end
+
+  # Delete the course.
+  def delete
+    @course = Course.find_by_id params[:id]
+  end
+
+  def destroy
+    course = Course.find_by_id params[:id]
+    course.destroy
+    redirect_to courses_path
   end
 
 
