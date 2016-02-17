@@ -4,7 +4,7 @@
   <div class="well">Course is not active or has been dropped</div>
 <% elsif @request %>
   <div class="well">Enrollment Request pending</div>
-<% elseif @auth_user.type == 'Student' %>
+<% elsif @auth_user.type == 'Student' %>
   <div class="well">
     <%= link_to 'Request Enrollment', enrollment_course_student_path(@course.id, @auth_user.id), method: 'post' %>
   </div>
