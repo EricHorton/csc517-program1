@@ -124,9 +124,15 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    course = Course.find_by_id params[:id]
-    course.destroy
-    redirect_to courses_path
+    begin
+      course = Course.find_by_id params[:id]
+      course.destroy
+      redirect_to courses_path
+    rescue
+      flash[:notice] = "Course cannot be deleted as one or more students are registered for it"
+      redirect_to courses_path
+    end
+
   end
 
 

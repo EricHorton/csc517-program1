@@ -12,6 +12,12 @@
   <% end %>
 </div>
 
+<% if flash[:notice] %>
+    <br/>
+    <div class="notice" style="color: #B00100"><%= flash[:notice] %></div>
+    <br/>
+<% end %>
+
 <% @courses.each do |c| %>
   <%= render 'courses/course', course: c %>
 <% end %>

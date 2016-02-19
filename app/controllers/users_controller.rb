@@ -39,9 +39,22 @@ class UsersController < ApplicationController
 
   # Delete a user
   def destroy
-    user = User.find_by_id params[:id]
-    user.destroy if user.deletable
-    redirect_to(:action => 'index')
+
+
+    begin
+      user = User.find_by_id params[:id]
+      user.destroy if user.deletable
+      redirect_to(:action => 'index')
+    rescue
+      if(user.type == "Student")
+        flash[:notice] = "Student cannot be deleted as he is registered for one or more courses"
+        redirect_to users_path
+      elsif(user.type == "Instructor")
+        flash[:notice] = "Instructor cannot be deleted as he is teaching for one or more courses"
+        redirect_to users_path
+      end
+    end
+
   end
 
   # Get a page for editing a user

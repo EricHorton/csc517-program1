@@ -1,4 +1,11 @@
+<% if flash[:notice] %>
+    <br/>
+    <div class="notice" style="color: #B00100"><%= flash[:notice] %></div>
+    <br/>
+<% end %>
+
 <div class="panel panel-default">
+
   <div class="panel-heading">
     Users
   </div>
